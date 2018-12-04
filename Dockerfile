@@ -38,7 +38,7 @@ ENV PATH=/opt/amazon-kinesis-video-streams-producer-sdk-cpp/kinesis-video-native
 RUN chmod a+x ./start_rtsp_in_docker.sh
 
 RUN echo "#!/bin/bash" >> /opt/gostream.sh
-RUN echo "gst-launch-1.0 -v -e rtspsrc protocols=tcp location=rtsp://bruceb.dynamic-dns.net:65227/live/0/h264.sdp ! queue max-size-time=100000000 ! rtph264depay ! h264parse ! mpegtsmux ! hlssink location="/opt/vid/%06d.ts" playlist-location="/opt/vid/playlist.m3u8" target-duration=5" >> /opt/gostream.sh
+RUN echo "gst-launch-1.0 -v -e rtspsrc protocols=tcp location=rtsp://184.72.239.149/vod/mp4:BigBuckBunny_115k.mov ! queue max-size-time=100000000 ! rtph264depay ! h264parse ! mpegtsmux ! hlssink location="/opt/vid/%06d.ts" playlist-location="/opt/vid/playlist.m3u8" target-duration=5" >> /opt/gostream.sh
 RUN chmod a+x /opt/gostream.sh
 
 # comment the following step if you would like to customize the docker image build
